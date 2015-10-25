@@ -34,8 +34,8 @@ dependencies {
 	compile "org.jetbrains.anko:anko-sdk15:$anko_version"
 	compile "org.jetbrains.anko:anko-support-v4:$anko_version"
 	project(':presentation')
-	project(':domain')
-	project(':infrastructure')
+	project(':core')
+	project(':external')
 }
 
 buildscript {
