@@ -26,5 +26,6 @@ android {
 dependencies {
 	compile "com.android.support:appcompat-v7:$support_version"
 	compile fileTree(dir: 'libs', include: ['*.jar'])
+	project(':core')
 	testCompile "junit:junit:$junit_version"
 }
