@@ -12,6 +12,8 @@ interface CommandResult<T> {
 
 interface CommandError
 
+class GenericError(val cause: Exception? = null) : CommandError
+
 interface CommandErrorAction<T : CommandError> {
 	fun onError(error: T)
 }
@@ -19,8 +21,6 @@ interface CommandErrorAction<T : CommandError> {
 open class CommandResponse<T>(val response: T, val error: CommandError?) {
 	fun hasError(): Boolean = error != null
 }
-
-class GenericError(val cause: Exception? = null) : CommandError
 
 interface CommandInvoker {
 	fun <T : CommandResponse<out Any>> execute(execution: CommandExecution<T>): Future<T>?
