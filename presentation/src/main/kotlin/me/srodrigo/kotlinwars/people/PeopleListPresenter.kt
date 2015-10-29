@@ -19,7 +19,9 @@ class PeopleListPresenter(private val invoker: CommandInvoker,
 		CommandExecution(command = getPeopleCommand,
 				commandResult = object : CommandResult<GetPeopleResponse> {
 					override fun onResult(result: GetPeopleResponse) {
-						if (!result.response.isEmpty()) {
+						if (result.response.isEmpty()) {
+							getView().showPeopleEmptyView()
+						} else{
 							getView().refreshPeopleList(result.response)
 						}
 					}

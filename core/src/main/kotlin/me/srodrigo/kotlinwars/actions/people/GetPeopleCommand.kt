@@ -7,10 +7,9 @@ import me.srodrigo.kotlinwars.model.people.Person
 
 class GetPeopleCommand(private val peopleApiRepository: PeopleApiRepository) : Command<GetPeopleResponse> {
 	override fun call(): GetPeopleResponse {
-		peopleApiRepository.getPeople()
-		return GetPeopleResponse(listOf(Person()))
+		val peopleList = peopleApiRepository.getPeople()
+		return GetPeopleResponse(peopleList)
 	}
 }
 
-class GetPeopleResponse(peopleList: List<Person>, error: CommandError? = null)
-		: CommandResponse<List<Person>>(peopleList, error)
+class GetPeopleResponse(peopleList: List<Person>, error: CommandError? = null) : CommandResponse<List<Person>>(peopleList, error)
