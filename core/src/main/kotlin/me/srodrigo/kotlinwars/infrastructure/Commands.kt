@@ -2,7 +2,7 @@ package me.srodrigo.kotlinwars.infrastructure
 
 import java.util.*
 import java.util.concurrent.Callable
-import java.util.concurrent.Future
+import java.util.concurrent.ExecutorService
 
 interface Command<T> : Callable<T>
 
@@ -22,8 +22,44 @@ open class CommandResponse<T>(val response: T, val error: CommandError?) {
 	fun hasError(): Boolean = error != null
 }
 
+interface ExecutionThread {
+	fun execute(runnable: Runnable)
+}
+
 interface CommandInvoker {
-	fun <T : CommandResponse<out Any>> execute(execution: CommandExecution<T>): Future<T>?
+	fun <T : CommandResponse<out Any>> execute(execution: CommandExecution<T>)
+}
+
+class CommandInvokerTask<T : CommandResponse<out Any>>(private val execution: CommandExecution<T>,
+                                                       private val postExecutionThread: ExecutionThread) : Runnable {
+
+	override fun run() {
+		try {
+			val response = execution.command.call()
+			if (response.hasError()) {
+				postExecutionThread.execute(Runnable { onErrorAction(execution, response) })
+			} else {
+				postExecutionThread.execute(Runnable { onResultAction(execution, response) })
+			}
+		} catch (e: Exception) {
+			postExecutionThread.execute(Runnable { doGenericErrorAction(execution, GenericError(e)) })
+		}
+	}
+
+	private fun <T : CommandResponse<out Any>> onResultAction(execution: CommandExecution<T>, response: T) {
+		execution.commandResult.onResult(response)
+	}
+
+	private fun <T : CommandResponse<out Any>> onErrorAction(execution: CommandExecution<T>, response: T) {
+		val error: CommandError = response.error!!
+		val errorAction = execution.getAction(error.javaClass)
+		errorAction?.onError(error) ?: doGenericErrorAction(execution, GenericError())
+	}
+
+	private fun <T : CommandResponse<out Any>> doGenericErrorAction(execution: CommandExecution<T>,
+	                                                                genericError: GenericError) {
+		execution.getGenericErrorAction()?.onError(genericError)
+	}
 }
 
 class CommandExecution<T : CommandResponse<out Any>>(val command: Command<T>,
@@ -46,7 +82,9 @@ class CommandExecution<T : CommandResponse<out Any>>(val command: Command<T>,
 	private fun castErrorAction(errorAction: CommandErrorAction<out CommandError>) =
 			errorAction as CommandErrorAction<in CommandError>
 
-	fun execute(invoker: CommandInvoker): Future<T>? = invoker.execute(this)
+	fun execute(invoker: CommandInvoker) {
+		invoker.execute(this)
+	}
 
 	fun getAction(javaClass: Class<CommandError>) = errors[javaClass]
 
