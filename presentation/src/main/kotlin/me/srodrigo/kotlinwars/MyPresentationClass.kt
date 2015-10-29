@@ -1,4 +1,4 @@
 package me.srodrigo.kotlinwars
 
-class MyClass {
+class MyPresentationClass {
 }
