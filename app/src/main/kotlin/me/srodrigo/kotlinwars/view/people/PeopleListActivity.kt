@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar
 import me.srodrigo.kotlinwars.CommandInvokerImp
 import me.srodrigo.kotlinwars.R
 import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
+import me.srodrigo.kotlinwars.actions.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.infrastructure.CommandInvoker
 import me.srodrigo.kotlinwars.infrastructure.ExecutionThread
 import me.srodrigo.kotlinwars.infrastructure.ViewStateHandler
@@ -32,13 +33,19 @@ class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshList
 		}
 	}
 
-	companion object InvokerFactory {
+	companion object Factory {
 		val invoker: CommandInvoker = CommandInvokerImp(MainThread)
+		val peopleApiRepository = object : PeopleApiRepository {
+			override fun getPeople(): List<Person> {
+				return listOf(Person(), Person())
+			}
+		}
+		val getPeopleCommand = GetPeopleCommand(peopleApiRepository)
 	}
 
 	val peopleListAdapter = PeopleListAdapter()
 	val peopleListStateHolder = ViewStateHandler<PeopleListState>()
-	val peopleListPresenter = PeopleListPresenter(InvokerFactory.invoker, GetPeopleCommand())
+	val peopleListPresenter = PeopleListPresenter(Factory.invoker, Factory.getPeopleCommand)
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

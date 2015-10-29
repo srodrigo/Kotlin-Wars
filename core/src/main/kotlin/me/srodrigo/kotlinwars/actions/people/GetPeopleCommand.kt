@@ -5,9 +5,9 @@ import me.srodrigo.kotlinwars.infrastructure.CommandError
 import me.srodrigo.kotlinwars.infrastructure.CommandResponse
 import me.srodrigo.kotlinwars.model.people.Person
 
-class GetPeopleCommand : Command<GetPeopleResponse> {
+class GetPeopleCommand(private val peopleApiRepository: PeopleApiRepository) : Command<GetPeopleResponse> {
 	override fun call(): GetPeopleResponse {
-		Thread.sleep(2000)
+		peopleApiRepository.getPeople()
 		return GetPeopleResponse(listOf(Person()))
 	}
 }
