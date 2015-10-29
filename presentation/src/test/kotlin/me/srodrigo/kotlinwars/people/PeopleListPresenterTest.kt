@@ -5,10 +5,7 @@ import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
 import me.srodrigo.kotlinwars.actions.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.infrastructure.CommandInvoker
 import me.srodrigo.kotlinwars.model.people.Person
-import me.srodrigo.kotlinwars.people.PeopleListPresenter
-import me.srodrigo.kotlinwars.people.PeopleListView
 import org.junit.Before
-
 import org.junit.Test
 import org.mockito.BDDMockito.*
 import java.util.*
@@ -24,7 +21,8 @@ class PeopleListPresenterTest {
 	@Before fun setUp() {
 		invoker = TestCommandInvoker()
 		peopleApiRepository = mock(PeopleApiRepository::class.java)
-		presenter = PeopleListPresenter(invoker, GetPeopleCommand(peopleApiRepository))
+		val getPeopleCommand = GetPeopleCommand.Builder.from(peopleApiRepository)
+		presenter = PeopleListPresenter(invoker, getPeopleCommand)
 		view = mock(PeopleListView::class.java)
 	}
 

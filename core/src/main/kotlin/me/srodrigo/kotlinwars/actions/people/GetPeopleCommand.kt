@@ -5,9 +5,17 @@ import me.srodrigo.kotlinwars.infrastructure.CommandError
 import me.srodrigo.kotlinwars.infrastructure.CommandResponse
 import me.srodrigo.kotlinwars.model.people.Person
 
-class GetPeopleCommand(private val peopleApiRepository: PeopleApiRepository) : Command<GetPeopleResponse> {
+class GetPeopleCommand private constructor(
+		private val peopleService: PeopleService) : Command<GetPeopleResponse> {
+
+	companion object Builder {
+		fun from(peopleApiRepository: PeopleApiRepository): GetPeopleCommand {
+			return GetPeopleCommand(PeopleService(peopleApiRepository))
+		}
+	}
+
 	override fun call(): GetPeopleResponse {
-		val peopleList = peopleApiRepository.getPeople()
+		val peopleList = peopleService.getPeople()
 		return GetPeopleResponse(peopleList)
 	}
 }
