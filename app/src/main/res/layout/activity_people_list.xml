@@ -29,6 +29,8 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				tools:listitem="@layout/item_people"
+				android:visibility="gone"
+				tools:visibility="visible"
 				/>
 
 			<TextView
@@ -37,6 +39,16 @@
 				android:layout_height="match_parent"
 				android:text="@string/people_empty_view"
 				android:gravity="center"
+				android:visibility="gone"
+				/>
+
+			<TextView
+				android:id="@+id/peopleLoadingView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:text="@string/loading_view"
+				android:gravity="center"
+				android:visibility="gone"
 				/>
 
 		</FrameLayout>

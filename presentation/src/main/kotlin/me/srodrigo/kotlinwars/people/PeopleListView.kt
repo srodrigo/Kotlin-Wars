@@ -4,5 +4,11 @@ import me.srodrigo.kotlinwars.PresenterView
 import me.srodrigo.kotlinwars.model.people.Person
 
 interface PeopleListView : PresenterView {
+	fun initPeopleListView()
+
 	fun refreshPeopleList(peopleList: List<Person>)
+
+	fun showPeopleEmptyView()
+
+	fun showLoadingView()
 }

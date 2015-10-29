@@ -16,9 +16,11 @@ class PeopleListPresenterTest {
 		val presenter = PeopleListPresenter(invoker, getPeopleCommand)
 		val view = mock(PeopleListView::class.java)
 		presenter.attachView(view)
+		verify(view).initPeopleListView()
 
 		presenter.onRefresh()
 
+		verify(view).showLoadingView()
 		verify(view).refreshPeopleList(anyListOf(Person::class.java))
 		verifyNoMoreInteractions(view)
 	}

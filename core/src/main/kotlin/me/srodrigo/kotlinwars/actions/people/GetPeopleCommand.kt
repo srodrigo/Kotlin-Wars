@@ -7,6 +7,7 @@ import me.srodrigo.kotlinwars.model.people.Person
 
 class GetPeopleCommand : Command<GetPeopleResponse> {
 	override fun call(): GetPeopleResponse {
+		Thread.sleep(2000)
 		return GetPeopleResponse(listOf(Person()))
 	}
 }

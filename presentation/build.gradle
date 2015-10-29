@@ -7,3 +7,5 @@ dependencies {
 	testCompile parent.ext.junit
 	testCompile parent.ext.mockito
 }
+
+jar.dependsOn test

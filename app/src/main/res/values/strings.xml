@@ -2,4 +2,5 @@
 	<string name="app_name">KotlinWars</string>
 	<string name="action_settings">Settings</string>
 	<string name="people_empty_view">No results</string>
+	<string name="loading_view">...LOADING...</string>
 </resources>
