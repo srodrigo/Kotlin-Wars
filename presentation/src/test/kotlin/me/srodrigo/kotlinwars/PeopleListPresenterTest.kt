@@ -38,11 +38,6 @@ class PeopleListPresenterTest {
 		verifyNoMoreInteractions(view)
 	}
 
-	private fun givenPeopleApiRepositoryReturnsResults(peopleRepository: PeopleApiRepository) {
-		val peopleList = listOf(Person(), Person())
-		given(peopleRepository.getPeople()).willReturn(peopleList)
-	}
-
 	@Test fun onRefresh_whenThereAreNoResults_shouldShowEmptyView() {
 		givenPeopleApiRepositoryReturnsEmptyResults(peopleApiRepository)
 
@@ -57,6 +52,11 @@ class PeopleListPresenterTest {
 	private fun attachAndVerifyInitialization() {
 		presenter.attachView(view)
 		verify(view).initPeopleListView()
+	}
+
+	private fun givenPeopleApiRepositoryReturnsResults(peopleRepository: PeopleApiRepository) {
+		val peopleList = listOf(Person(), Person())
+		given(peopleRepository.getPeople()).willReturn(peopleList)
 	}
 
 	private fun givenPeopleApiRepositoryReturnsEmptyResults(peopleRepository: PeopleApiRepository) {
