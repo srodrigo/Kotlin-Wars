@@ -1,5 +1,6 @@
-package me.srodrigo.kotlinwars
+package me.srodrigo.kotlinwars.people
 
+import me.srodrigo.kotlinwars.TestCommandInvoker
 import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
 import me.srodrigo.kotlinwars.actions.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.infrastructure.CommandInvoker

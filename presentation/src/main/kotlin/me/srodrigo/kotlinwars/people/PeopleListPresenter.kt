@@ -25,7 +25,6 @@ class PeopleListPresenter(private val invoker: CommandInvoker,
 							getView().refreshPeopleList(result.response)
 						}
 					}
-
 				})
 				.genericErrorAction(GenericErrorAction(getView()))
 				.execute(invoker)
