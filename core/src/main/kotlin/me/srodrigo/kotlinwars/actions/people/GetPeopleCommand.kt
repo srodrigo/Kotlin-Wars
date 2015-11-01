@@ -9,7 +9,7 @@ class GetPeopleCommand private constructor(
 		private val peopleService: PeopleService) : Command<GetPeopleResponse> {
 
 	companion object Builder {
-		fun from(peopleApiRepository: PeopleApiRepository): GetPeopleCommand {
+		fun create(peopleApiRepository: PeopleApiRepository): GetPeopleCommand {
 			return GetPeopleCommand(PeopleService(peopleApiRepository))
 		}
 	}

@@ -21,7 +21,7 @@ class PeopleListPresenterTest {
 	@Before fun setUp() {
 		invoker = TestCommandInvoker()
 		peopleApiRepository = mock(PeopleApiRepository::class.java)
-		val getPeopleCommand = GetPeopleCommand.from(peopleApiRepository)
+		val getPeopleCommand = GetPeopleCommand.create(peopleApiRepository)
 		presenter = PeopleListPresenter(invoker, getPeopleCommand)
 		view = mock(PeopleListView::class.java)
 	}

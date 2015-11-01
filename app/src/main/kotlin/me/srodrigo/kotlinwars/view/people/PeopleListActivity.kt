@@ -40,7 +40,7 @@ class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshList
 				return listOf(Person(), Person())
 			}
 		}
-		val getPeopleCommand = GetPeopleCommand.from(peopleApiRepository)
+		val getPeopleCommand = GetPeopleCommand.create(peopleApiRepository)
 	}
 
 	val peopleListAdapter = PeopleListAdapter()
