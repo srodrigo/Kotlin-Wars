@@ -1,6 +1,4 @@
-package me.srodrigo.kotlinwars.actions.people
-
-import me.srodrigo.kotlinwars.model.people.Person
+package me.srodrigo.kotlinwars.model.people
 
 internal class PeopleService(private val peopleApiRepository: PeopleApiRepository) {
 

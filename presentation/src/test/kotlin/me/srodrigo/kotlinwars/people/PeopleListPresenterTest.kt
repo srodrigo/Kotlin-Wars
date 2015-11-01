@@ -2,7 +2,7 @@ package me.srodrigo.kotlinwars.people
 
 import me.srodrigo.kotlinwars.TestCommandInvoker
 import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
-import me.srodrigo.kotlinwars.actions.people.PeopleApiRepository
+import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.infrastructure.CommandInvoker
 import me.srodrigo.kotlinwars.model.people.Person
 import org.junit.Before
