@@ -1,6 +1,5 @@
 package me.srodrigo.kotlinwars
 
-import me.srodrigo.kotlinwars.PresenterView
 import me.srodrigo.kotlinwars.actions.NetworkUnavailableError
 import me.srodrigo.kotlinwars.infrastructure.CommandErrorAction
 
