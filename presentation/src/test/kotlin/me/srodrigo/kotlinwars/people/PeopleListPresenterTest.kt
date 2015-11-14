@@ -2,6 +2,7 @@ package me.srodrigo.kotlinwars.people
 
 import me.srodrigo.kotlinwars.TestCommandInvoker
 import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
+import me.srodrigo.kotlinwars.infrastructure.ApiNetworkUnavailableException
 import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.infrastructure.CommandInvoker
 import me.srodrigo.kotlinwars.model.people.Person
@@ -33,6 +34,7 @@ class PeopleListPresenterTest {
 		presenter.onRefresh()
 
 		verify(view).showLoadingView()
+		// TODO should hide loading view
 		verify(view).refreshPeopleList(anyListOf(Person::class.java))
 		verifyNoMoreInteractions(view)
 	}
@@ -48,7 +50,16 @@ class PeopleListPresenterTest {
 		verifyNoMoreInteractions(view)
 	}
 
-	// TODO Tests for GetPeopleError
+	@Test fun onRefresh_whenNetworkIsUnavailable_shouldShowError() {
+		givenNetworkIsUnavailable(peopleApiRepository)
+
+		attachAndVerifyInitialization()
+		presenter.onRefresh()
+
+		verify(view).showLoadingView()
+		verify(view).showNetworkUnavailableError()
+		verifyNoMoreInteractions(view)
+	}
 
 	private fun attachAndVerifyInitialization() {
 		presenter.attachView(view)
@@ -62,6 +73,10 @@ class PeopleListPresenterTest {
 
 	private fun givenPeopleApiRepositoryReturnsEmptyResults(peopleRepository: PeopleApiRepository) {
 		given(peopleRepository.getPeople()).willReturn(Collections.emptyList())
+	}
+
+	private fun givenNetworkIsUnavailable(peopleRepository: PeopleApiRepository) {
+		given(peopleRepository.getPeople()).willThrow(ApiNetworkUnavailableException::class.java)
 	}
 
 }

@@ -109,6 +109,10 @@ class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshList
 		throw UnsupportedOperationException()
 	}
 
+	override fun showNetworkUnavailableError() {
+		throw UnsupportedOperationException()
+	}
+
 	enum class PeopleListState {
 		LOADING,
 		EMPTY,

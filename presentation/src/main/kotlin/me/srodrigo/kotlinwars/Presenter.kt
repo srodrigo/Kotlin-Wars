@@ -15,4 +15,6 @@ abstract class Presenter<T : PresenterView> {
 
 interface PresenterView {
 	fun showGenericError()
+
+	fun showNetworkUnavailableError()
 }
