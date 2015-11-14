@@ -49,6 +49,14 @@ allprojects {
 		// Test libs
 		junit = "junit:junit:4.12"
 		mockito = "org.mockito:mockito-core:1.10.19"
+
+		androidSupportTestVersion = "0.4.1"
+		espressoVersion = "2.2.1"
+		supportAnnotations = "com.android.support:support-annotations:$androidSupportVersion"
+		testRunner = "com.android.support.test:runner:$androidSupportTestVersion"
+		testRules = "com.android.support.test:rules:$androidSupportTestVersion"
+		espressoCore = "com.android.support.test.espresso:espresso-core:$espressoVersion"
+		espressoContrib = "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
 	}
 }
 

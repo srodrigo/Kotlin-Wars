@@ -11,6 +11,8 @@ android {
 		targetSdkVersion parent.ext.androidTargetSdkVersion
 		versionCode parent.ext.androidVersionCode
 		versionName parent.ext.androidVersionName
+
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 	buildTypes {
 		release {
@@ -36,6 +38,16 @@ dependencies {
 	compile project(':external')
 
 	testCompile junit
+
+	androidTestCompile parent.ext.supportAnnotations
+	androidTestCompile parent.ext.testRunner
+	androidTestCompile parent.ext.testRules
+	androidTestCompile parent.ext.espressoCore
+	androidTestCompile (parent.ext.espressoContrib) {
+		exclude group: 'com.android.support', module: 'appcompat'
+		exclude group: 'com.android.support', module: 'support-v4'
+		exclude module: 'recyclerview-v7'
+	}
 }
 
 buildscript {
