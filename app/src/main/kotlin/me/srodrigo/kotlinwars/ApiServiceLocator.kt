@@ -1,6 +1,7 @@
 package me.srodrigo.kotlinwars
 
 import com.squareup.okhttp.OkHttpClient
+import me.srodrigo.kotlinwars.infrastructure.SwapiErrorHandler
 import me.srodrigo.kotlinwars.infrastructure.SwapiService
 import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.model.people.PeopleApiRepositoryImp
@@ -17,6 +18,7 @@ class ApiServiceLocatorImp : ApiServiceLocator {
 			.setEndpoint("http://swapi.co/api")
 			.setLogLevel(if (BuildConfig.DEBUG) RestAdapter.LogLevel.FULL else RestAdapter.LogLevel.NONE)
 			.setClient(OkClient(OkHttpClient()))
+			.setErrorHandler(SwapiErrorHandler())
 			.build();
 
 	private val swapiService: SwapiService = restAdapter.create(SwapiService::class.java)
