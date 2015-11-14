@@ -17,9 +17,10 @@ class GetPeopleCommand private constructor(
 	}
 
 	override fun call(): GetPeopleResponse {
-		val peopleList = peopleService.getPeople()
-		return GetPeopleResponse(peopleList)
+		return peopleService.getPeople()
 	}
 }
 
-class GetPeopleResponse(peopleList: List<Person>, error: CommandError? = null) : CommandResponse<List<Person>>(peopleList, error)
+class GetPeopleResponse(peopleList: List<Person>? = null, error: CommandError? = null) : CommandResponse<List<Person>>(peopleList, error)
+
+class GetPeopleError : CommandError

@@ -18,7 +18,7 @@ interface CommandErrorAction<T : CommandError> {
 	fun onError(error: T)
 }
 
-open class CommandResponse<T>(val response: T, val error: CommandError?) {
+open class CommandResponse<T>(val response: T? = null, val error: CommandError? = null) {
 	fun hasError(): Boolean = error != null
 }
 

@@ -12,10 +12,10 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import me.srodrigo.kotlinwars.ApiServiceLocatorImp
 import me.srodrigo.kotlinwars.CommandInvokerImp
 import me.srodrigo.kotlinwars.R
 import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
-import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.infrastructure.CommandInvoker
 import me.srodrigo.kotlinwars.infrastructure.ExecutionThread
 import me.srodrigo.kotlinwars.infrastructure.ViewStateHandler
@@ -35,11 +35,7 @@ class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshList
 
 	companion object Factory {
 		val invoker: CommandInvoker = CommandInvokerImp(MainThread)
-		val peopleApiRepository = object : PeopleApiRepository {
-			override fun getPeople(): List<Person> {
-				return listOf(Person(), Person())
-			}
-		}
+		val peopleApiRepository = ApiServiceLocatorImp().createPeopleApiRepository()
 		val getPeopleCommand = GetPeopleCommand.create(peopleApiRepository)
 	}
 

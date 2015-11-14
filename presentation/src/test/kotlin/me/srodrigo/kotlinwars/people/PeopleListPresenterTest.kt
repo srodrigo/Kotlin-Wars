@@ -48,6 +48,8 @@ class PeopleListPresenterTest {
 		verifyNoMoreInteractions(view)
 	}
 
+	// TODO Tests for GetPeopleError
+
 	private fun attachAndVerifyInitialization() {
 		presenter.attachView(view)
 		verify(view).initPeopleListView()

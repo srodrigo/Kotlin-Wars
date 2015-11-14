@@ -27,6 +27,8 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 	compile parent.ext.appcompatV7
 	compile parent.ext.kotlinStdlib
+	compile parent.ext.retrofit
+	compile parent.ext.okhttp
 	compile project(':core')
 	testCompile parent.ext.junit
 }
