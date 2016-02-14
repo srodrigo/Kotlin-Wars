@@ -2,7 +2,6 @@ package me.srodrigo.kotlinwars.infrastructure
 
 import java.util.*
 import java.util.concurrent.Callable
-import java.util.concurrent.ExecutorService
 
 interface Command<T> : Callable<T>
 

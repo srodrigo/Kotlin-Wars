@@ -23,29 +23,8 @@ class PeopleListAdapter : ListRecyclerAdapter<Person, PeopleListAdapter.ViewHold
 
 	class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 		fun bind(item: Person) {
-			itemView.nameView.text = "Name"
+			itemView.nameView.text = item.name
 		}
 
 	}
 }
-/*
-class PeopleListAdapter(val data: List<Person>) : RecyclerView.Adapter<PeopleListAdapter.ViewHolder>() {
-
-	override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder? {
-		val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_people, parent, false)
-		return ViewHolder(view)
-	}
-
-	override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-		holder?.bind(data[position])
-	}
-
-	override fun getItemCount(): Int = data.size
-
-	class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-		fun bind(item: Person) {
-			itemView.nameView.text = "Name"
-		}
-
-	}
-}*/
