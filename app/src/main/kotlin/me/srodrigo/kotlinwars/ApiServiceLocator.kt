@@ -4,7 +4,7 @@ import com.squareup.okhttp.OkHttpClient
 import me.srodrigo.kotlinwars.infrastructure.SwapiErrorHandler
 import me.srodrigo.kotlinwars.infrastructure.SwapiService
 import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
-import me.srodrigo.kotlinwars.model.people.PeopleApiRepositoryImp
+import me.srodrigo.kotlinwars.model.people.PeopleSwapiApiRepository
 import retrofit.RestAdapter
 import retrofit.client.OkClient
 
@@ -23,5 +23,5 @@ class ApiServiceLocatorImp : ApiServiceLocator {
 
 	private val swapiService: SwapiService = restAdapter.create(SwapiService::class.java)
 
-	override fun createPeopleApiRepository() = PeopleApiRepositoryImp(swapiService)
+	override fun createPeopleApiRepository() = PeopleSwapiApiRepository(swapiService)
 }
