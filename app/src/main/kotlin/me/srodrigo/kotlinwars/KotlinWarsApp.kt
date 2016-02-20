@@ -18,7 +18,7 @@ class KotlinWarsApp : Application() {
 		}
 	}
 
-	val executor: CommandExecutor = CommandExecutorImp(MainThread)
+	val executor: CommandExecutor = CommandThreadPoolExecutor(MainThread)
 	var apiServiceLocator: ApiServiceLocator by Delegates.notNull<ApiServiceLocator>()
 
 	private var _peopleApiRepository: PeopleApiRepository? = null
