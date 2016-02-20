@@ -1,9 +1,9 @@
 package me.srodrigo.kotlinwars.view.people
 
-import kotlinx.android.synthetic.activity_people_list.peopleSwipeLayout
-import kotlinx.android.synthetic.activity_people_list.peopleListView
-import kotlinx.android.synthetic.activity_people_list.peopleLoadingView
-import kotlinx.android.synthetic.activity_people_list.peopleEmptyView
+import kotlinx.android.synthetic.main.activity_people_list.peopleSwipeLayout
+import kotlinx.android.synthetic.main.activity_people_list.peopleListView
+import kotlinx.android.synthetic.main.activity_people_list.peopleLoadingView
+import kotlinx.android.synthetic.main.activity_people_list.peopleEmptyView
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.widget.SwipeRefreshLayout
@@ -70,7 +70,7 @@ class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshList
 		val toolbar = findViewById(R.id.toolbar) as? Toolbar
 		if (toolbar != null) {
 			setSupportActionBar(toolbar)
-			supportActionBar.setDisplayHomeAsUpEnabled(false)
+			supportActionBar?.setDisplayHomeAsUpEnabled(false)
 		}
 	}
 

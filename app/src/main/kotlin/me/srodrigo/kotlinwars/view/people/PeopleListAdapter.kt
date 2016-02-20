@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import me.srodrigo.kotlinwars.R
 import me.srodrigo.kotlinwars.infrastructure.ListRecyclerAdapter
 import me.srodrigo.kotlinwars.model.people.Person
-import kotlinx.android.synthetic.item_people.view.nameView
+import kotlinx.android.synthetic.main.item_people.view.nameView
 
 
 class PeopleListAdapter : ListRecyclerAdapter<Person, PeopleListAdapter.ViewHolder>() {
