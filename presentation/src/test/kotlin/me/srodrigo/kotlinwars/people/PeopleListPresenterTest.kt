@@ -34,8 +34,8 @@ class PeopleListPresenterTest {
 		presenter.onRefresh()
 
 		verify(view).showLoadingView()
-		// TODO should hide loading view
 		verify(view).refreshPeopleList(anyListOf(Person::class.java))
+		verify(view).hideLoadingView()
 		verifyNoMoreInteractions(view)
 	}
 
@@ -47,6 +47,7 @@ class PeopleListPresenterTest {
 
 		verify(view).showLoadingView()
 		verify(view).showPeopleEmptyView()
+		verify(view).hideLoadingView()
 		verifyNoMoreInteractions(view)
 	}
 
@@ -58,6 +59,7 @@ class PeopleListPresenterTest {
 
 		verify(view).showLoadingView()
 		verify(view).showNetworkUnavailableError()
+		verify(view).hideLoadingView()
 		verifyNoMoreInteractions(view)
 	}
 

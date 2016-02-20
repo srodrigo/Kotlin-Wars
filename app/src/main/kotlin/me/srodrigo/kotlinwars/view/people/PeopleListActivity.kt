@@ -14,6 +14,7 @@ import me.srodrigo.kotlinwars.model.people.Person
 import me.srodrigo.kotlinwars.people.PeopleListPresenter
 import me.srodrigo.kotlinwars.people.PeopleListView
 import me.srodrigo.kotlinwars.view.app
+import me.srodrigo.kotlinwars.view.showMessage
 import kotlin.properties.Delegates
 
 class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener, PeopleListView {
@@ -83,16 +84,20 @@ class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshList
 		peopleListStateHolder.show(PeopleListState.LOADING)
 	}
 
+	override fun hideLoadingView() {
+		peopleSwipeLayout.isRefreshing = false
+	}
+
 	override fun showPeopleEmptyView() {
 		peopleListStateHolder.show(PeopleListState.EMPTY)
 	}
 
 	override fun showGenericError() {
-		throw UnsupportedOperationException()
+		showMessage(R.string.unknown_error)
 	}
 
 	override fun showNetworkUnavailableError() {
-		throw UnsupportedOperationException()
+		showMessage(R.string.network_unavailable)
 	}
 
 	enum class PeopleListState {
