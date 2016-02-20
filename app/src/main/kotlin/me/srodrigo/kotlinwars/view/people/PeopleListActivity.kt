@@ -1,51 +1,33 @@
 package me.srodrigo.kotlinwars.view.people
 
-import kotlinx.android.synthetic.main.activity_people_list.peopleSwipeLayout
-import kotlinx.android.synthetic.main.activity_people_list.peopleListView
-import kotlinx.android.synthetic.main.activity_people_list.peopleLoadingView
-import kotlinx.android.synthetic.main.activity_people_list.peopleEmptyView
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import me.srodrigo.kotlinwars.ApiServiceLocatorImp
-import me.srodrigo.kotlinwars.CommandInvokerImp
+import kotlinx.android.synthetic.main.activity_people_list.*
 import me.srodrigo.kotlinwars.R
-import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
-import me.srodrigo.kotlinwars.infrastructure.CommandInvoker
-import me.srodrigo.kotlinwars.infrastructure.ExecutionThread
 import me.srodrigo.kotlinwars.infrastructure.ViewStateHandler
 import me.srodrigo.kotlinwars.model.people.Person
 import me.srodrigo.kotlinwars.people.PeopleListPresenter
 import me.srodrigo.kotlinwars.people.PeopleListView
+import me.srodrigo.kotlinwars.view.app
+import kotlin.properties.Delegates
 
 class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener, PeopleListView {
 
-	object MainThread : ExecutionThread {
-		private val handler = Handler()
-
-		override fun execute(runnable: Runnable) {
-			handler.post(runnable)
-		}
-	}
-
-	companion object Factory {
-		val invoker: CommandInvoker = CommandInvokerImp(MainThread)
-		val peopleApiRepository = ApiServiceLocatorImp().createPeopleApiRepository()
-		val getPeopleCommand = GetPeopleCommand.create(peopleApiRepository)
-	}
-
 	val peopleListAdapter = PeopleListAdapter()
 	val peopleListStateHolder = ViewStateHandler<PeopleListState>()
-	val peopleListPresenter = PeopleListPresenter(Factory.invoker, Factory.getPeopleCommand)
+	var peopleListPresenter by Delegates.notNull<PeopleListPresenter>()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_people_list)
+		if (savedInstanceState == null) {
+			peopleListPresenter = PeopleListPresenter(app().invoker, app().createGetPeopleCommand())
+		}
 		peopleListPresenter.attachView(this)
 	}
 
