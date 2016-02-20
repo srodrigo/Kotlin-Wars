@@ -27,7 +27,7 @@ class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshList
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_people_list)
 		if (savedInstanceState == null) {
-			peopleListPresenter = PeopleListPresenter(app().invoker, app().createGetPeopleCommand())
+			peopleListPresenter = PeopleListPresenter(app().executor, app().createGetPeopleCommand())
 		}
 		peopleListPresenter.attachView(this)
 	}

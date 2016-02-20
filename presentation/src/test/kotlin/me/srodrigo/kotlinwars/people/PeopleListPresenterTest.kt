@@ -1,10 +1,10 @@
 package me.srodrigo.kotlinwars.people
 
-import me.srodrigo.kotlinwars.TestCommandInvoker
+import me.srodrigo.kotlinwars.TestCommandExecutor
 import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
 import me.srodrigo.kotlinwars.infrastructure.ApiNetworkUnavailableException
 import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
-import me.srodrigo.kotlinwars.infrastructure.CommandInvoker
+import me.srodrigo.kotlinwars.infrastructure.CommandExecutor
 import me.srodrigo.kotlinwars.model.people.Person
 import org.junit.Before
 import org.junit.Test
@@ -14,16 +14,16 @@ import kotlin.properties.Delegates
 
 class PeopleListPresenterTest {
 
-	var invoker: CommandInvoker by Delegates.notNull<CommandInvoker>()
+	var executor: CommandExecutor by Delegates.notNull<CommandExecutor>()
 	var presenter: PeopleListPresenter by Delegates.notNull<PeopleListPresenter>()
 	var view: PeopleListView by Delegates.notNull<PeopleListView>()
 	var peopleApiRepository: PeopleApiRepository by Delegates.notNull<PeopleApiRepository>()
 
 	@Before fun setUp() {
-		invoker = TestCommandInvoker()
+		executor = TestCommandExecutor()
 		peopleApiRepository = mock(PeopleApiRepository::class.java)
 		val getPeopleCommand = GetPeopleCommand.create(peopleApiRepository)
-		presenter = PeopleListPresenter(invoker, getPeopleCommand)
+		presenter = PeopleListPresenter(executor, getPeopleCommand)
 		view = mock(PeopleListView::class.java)
 	}
 

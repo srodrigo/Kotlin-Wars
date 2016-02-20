@@ -8,7 +8,7 @@ import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
 import me.srodrigo.kotlinwars.actions.people.GetPeopleResponse
 import me.srodrigo.kotlinwars.infrastructure.*
 
-class PeopleListPresenter(private val invoker: CommandInvoker,
+class PeopleListPresenter(private val executor: CommandExecutor,
                           private val getPeopleCommand: GetPeopleCommand) : Presenter<PeopleListView>() {
 	override fun onViewAttached() {
 		getView().initPeopleListView()
@@ -36,6 +36,6 @@ class PeopleListPresenter(private val invoker: CommandInvoker,
 							}
 						})
 				.genericErrorActions(GenericErrorAction(getView()))
-				.execute(invoker)
+				.execute(executor)
 	}
 }

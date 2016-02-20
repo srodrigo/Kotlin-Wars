@@ -3,7 +3,7 @@ package me.srodrigo.kotlinwars
 import android.app.Application
 import android.os.Handler
 import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
-import me.srodrigo.kotlinwars.infrastructure.CommandInvoker
+import me.srodrigo.kotlinwars.infrastructure.CommandExecutor
 import me.srodrigo.kotlinwars.infrastructure.ExecutionThread
 import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
 import kotlin.properties.Delegates
@@ -18,7 +18,7 @@ class KotlinWarsApp : Application() {
 		}
 	}
 
-	val invoker: CommandInvoker = CommandInvokerImp(MainThread)
+	val executor: CommandExecutor = CommandExecutorImp(MainThread)
 	var apiServiceLocator: ApiServiceLocator by Delegates.notNull<ApiServiceLocator>()
 
 	private var _peopleApiRepository: PeopleApiRepository? = null

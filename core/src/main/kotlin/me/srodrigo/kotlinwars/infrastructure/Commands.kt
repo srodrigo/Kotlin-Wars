@@ -25,11 +25,11 @@ interface ExecutionThread {
 	fun execute(runnable: Runnable)
 }
 
-interface CommandInvoker {
+interface CommandExecutor {
 	fun <T : CommandResponse<out Any>> execute(execution: CommandExecution<T>)
 }
 
-class CommandInvokerTask<T : CommandResponse<out Any>>(private val execution: CommandExecution<T>,
+class CommandExecutorTask<T : CommandResponse<out Any>>(private val execution: CommandExecution<T>,
                                                        private val postExecutionThread: ExecutionThread) : Runnable {
 
 	override fun run() {
@@ -96,8 +96,8 @@ class CommandExecution<T : CommandResponse<out Any>>(val command: Command<T>,
 	private fun castErrorAction(errorAction: CommandErrorAction<out CommandError>) =
 			errorAction as CommandErrorAction<in CommandError>
 
-	fun execute(invoker: CommandInvoker) {
-		invoker.execute(this)
+	fun execute(executor: CommandExecutor) {
+		executor.execute(this)
 	}
 
 	fun getActions(javaClass: Class<CommandError>) = errors[javaClass]
