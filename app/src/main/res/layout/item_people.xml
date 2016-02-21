@@ -1,38 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="horizontal"
-	android:gravity="center_vertical"
+	android:layout_gravity="center_vertical"
+	android:orientation="vertical"
+	android:padding="@dimen/people_list_item_padding"
 	>
 
-	<ImageView
-		android:id="@+id/photoView"
-		android:layout_width="@dimen/people_avatar_size"
-		android:layout_height="@dimen/people_avatar_size"
-		android:src="@drawable/ic_image_tag_faces"
-		/>
-
-	<LinearLayout
+	<TextView
+		android:id="@+id/nameView"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		>
+		android:textColor="@color/primary_text"
+		android:textSize="@dimen/default_text_size"
+		android:textStyle="bold"
+		tools:text="Luka Skywalker"
+		/>
 
-		<TextView
-			android:id="@+id/nameView"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:text="Luka Skywalker"
-			/>
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:text="Height: 172 cm"
-			/>
-
-	</LinearLayout>
+	<TextView
+		android:id="@+id/extraDataView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textColor="@color/secondary_text"
+		android:textSize="@dimen/small_text_size"
+		tools:text="172 cm - 77 kgs"
+		/>
 
 </LinearLayout>

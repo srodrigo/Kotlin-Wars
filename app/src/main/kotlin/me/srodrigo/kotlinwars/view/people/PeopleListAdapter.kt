@@ -4,10 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.item_people.view.*
 import me.srodrigo.kotlinwars.R
 import me.srodrigo.kotlinwars.infrastructure.ListRecyclerAdapter
 import me.srodrigo.kotlinwars.model.people.Person
-import kotlinx.android.synthetic.main.item_people.view.nameView
 
 
 class PeopleListAdapter : ListRecyclerAdapter<Person, PeopleListAdapter.ViewHolder>() {
@@ -24,6 +24,8 @@ class PeopleListAdapter : ListRecyclerAdapter<Person, PeopleListAdapter.ViewHold
 	class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 		fun bind(item: Person) {
 			itemView.nameView.text = item.name
+			itemView.extraDataView.text = itemView.context.getString(
+					R.string.height_and_mass, item.height, item.mass)
 		}
 
 	}

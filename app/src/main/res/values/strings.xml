@@ -4,6 +4,8 @@
 	<string name="people_empty_view">No results</string>
 	<string name="loading_view">...LOADING...</string>
 
+	<string name="height_and_mass" formatted="false">%d cm - %.0f kgs</string>
+
 	<string name="network_unavailable">The network connection is not available at the moment. Please wait</string>
 	<string name="unknown_error">Unknown error</string>
 </resources>

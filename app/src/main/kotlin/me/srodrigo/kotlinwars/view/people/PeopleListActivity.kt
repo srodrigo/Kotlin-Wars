@@ -71,6 +71,7 @@ class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshList
 		peopleListView.layoutManager = LinearLayoutManager(this)
 		peopleListView.adapter = peopleListAdapter
 		peopleListView.itemAnimator = DefaultItemAnimator()
+		peopleListView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 		peopleListView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
 		})
