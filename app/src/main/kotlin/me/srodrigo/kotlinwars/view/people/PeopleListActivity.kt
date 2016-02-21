@@ -37,6 +37,11 @@ class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshList
 		peopleListPresenter.onRefresh()
 	}
 
+	override fun onDestroy() {
+		peopleListPresenter.detachView()
+		super.onDestroy()
+	}
+
 	override fun onRefresh() {
 		peopleListPresenter.onRefresh()
 	}

@@ -10,6 +10,10 @@ abstract class Presenter<T : PresenterView> {
 
 	protected abstract fun onViewAttached()
 
+	fun detachView() {
+		this.view = null
+	}
+
 	fun getView(): T = view!!
 }
 
