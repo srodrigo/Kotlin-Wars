@@ -16,7 +16,8 @@ class PeopleListPresenter(private val executor: CommandExecutor,
 
 	fun onRefresh() {
 		getView().showLoadingView()
-		CommandExecution(command = getPeopleCommand,
+		CommandExecution(
+				command = getPeopleCommand,
 				commandResult = object : CommandResult<GetPeopleResponse> {
 					override fun onResult(result: GetPeopleResponse) {
 						if (result.response!!.isEmpty()) {
