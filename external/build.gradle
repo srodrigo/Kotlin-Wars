@@ -31,6 +31,9 @@ dependencies {
 	compile parent.ext.retrofit
 	compile parent.ext.okhttp
 	compile project(':core')
+	testCompile parent.ext.junit
+	testCompile parent.ext.mockito
 	androidTestCompile parent.ext.junit
 	androidTestCompile parent.ext.mockito
+	androidTestCompile parent.ext.mockWebServer
 }

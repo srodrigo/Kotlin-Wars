@@ -6,7 +6,7 @@ import me.srodrigo.kotlinwars.infrastructure.ApiMapper
 import me.srodrigo.kotlinwars.infrastructure.toFloatOrNull
 import me.srodrigo.kotlinwars.infrastructure.toIntOrNull
 
-class ApiPerson(
+data class ApiPerson(
 		@Expose @SerializedName("birth_year") val birthYear: String?,
 		@Expose @SerializedName("eye_color") val eyeColor: String?,
 		@Expose @SerializedName("height") val height: String?,

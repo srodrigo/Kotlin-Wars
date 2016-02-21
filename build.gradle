@@ -57,6 +57,8 @@ allprojects {
 		testRules = "com.android.support.test:rules:$androidSupportTestVersion"
 		espressoCore = "com.android.support.test.espresso:espresso-core:$espressoVersion"
 		espressoContrib = "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
+
+		mockWebServer = "com.squareup.okhttp:mockwebserver:2.5.0"
 	}
 }
 
