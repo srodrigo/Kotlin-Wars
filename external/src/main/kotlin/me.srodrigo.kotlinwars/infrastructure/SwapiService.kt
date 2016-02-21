@@ -5,6 +5,10 @@ import retrofit.http.GET
 
 interface SwapiService {
 
-	@GET("/people/")
+	companion object Urls {
+		const val PEOPLE_URL = "/people"
+	}
+
+	@GET(Urls.PEOPLE_URL)
 	fun getPeople(): ApiPaginatedResponse<ApiPerson>
 }

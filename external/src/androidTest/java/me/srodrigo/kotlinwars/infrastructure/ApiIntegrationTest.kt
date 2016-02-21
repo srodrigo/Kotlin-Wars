@@ -15,7 +15,27 @@ import java.net.HttpURLConnection
 @LargeTest
 class ApiIntegrationTest : AndroidTestCase() {
 
-	fun testParseValidResponse() {
+	fun testSendValidGetPeopleRequest() {
+		// This variable is local to avoid concurrency problems if we make it instance variable
+		val server = MockWebServer()
+		server.start()
+		enqueueGetPeopleResponse(server);
+		val swapiService: SwapiService = createSwapiService(server.url("/").toString())
+
+		swapiService.getPeople()
+
+		assertValidGetPeopleRequest(server)
+
+		server.shutdown()
+	}
+
+	private fun assertValidGetPeopleRequest(server: MockWebServer) {
+		val recordedRequest = server.takeRequest()
+		assertThat(recordedRequest.path, `is`("/people"))
+		assertThat(recordedRequest.method, `is`("GET"))
+	}
+
+	fun testParseValidGetPeopleResponse() {
 		val server = MockWebServer()
 		server.start()
 		enqueueGetPeopleResponse(server);
