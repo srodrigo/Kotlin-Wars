@@ -4,8 +4,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	android:fitsSystemWindows="true"
-	tools:context=".MainActivity"
+	tools:context=".view.people.PeopleListActivity"
 	>
 
 	<include
@@ -16,7 +15,8 @@
 	<android.support.v4.widget.SwipeRefreshLayout
 		android:id="@+id/peopleSwipeLayout"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
+		tools:context=".view.people.PeopleListActivity"
 		>
 
 		<FrameLayout
