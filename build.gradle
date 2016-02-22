@@ -30,7 +30,7 @@ allprojects {
 		androidApplicationId = 'me.srodrigo.kotlinwars'
 		androidVersionCode = 1
 		androidVersionName = '0.0.1'
-		androidSupportVersion = '23.1.0'
+		androidSupportVersion = '23.1.1'
 
 		// Android libs
 		appcompatV7 = "com.android.support:appcompat-v7:$androidSupportVersion"
