@@ -12,10 +12,10 @@ interface ApiServiceLocator {
 	fun createPeopleApiRepository() : PeopleApiRepository
 }
 
-class ApiServiceLocatorImp : ApiServiceLocator {
+class ApiServiceLocatorImp(private val endpointUrl: String) : ApiServiceLocator {
 
 	private val restAdapter = RestAdapter.Builder()
-			.setEndpoint("http://swapi.co/api")
+			.setEndpoint(endpointUrl)
 			.setLogLevel(if (BuildConfig.DEBUG) RestAdapter.LogLevel.FULL else RestAdapter.LogLevel.NONE)
 			.setClient(OkClient(OkHttpClient()))
 			.setErrorHandler(SwapiErrorHandler())

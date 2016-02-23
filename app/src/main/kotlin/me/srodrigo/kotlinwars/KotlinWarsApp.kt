@@ -32,7 +32,7 @@ class KotlinWarsApp : Application() {
 
 	override fun onCreate() {
 		super.onCreate()
-		apiServiceLocator = ApiServiceLocatorImp()
+		apiServiceLocator = ApiServiceLocatorImp(endpointUrl = "http://swapi.co/api")
 	}
 
 	fun createGetPeopleCommand(): GetPeopleCommand = GetPeopleCommand.create(peopleApiRepository)
