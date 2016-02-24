@@ -3,7 +3,6 @@ package me.srodrigo.kotlinwars.infrastructure
 import android.test.AndroidTestCase
 import android.test.suitebuilder.annotation.LargeTest
 import com.squareup.okhttp.OkHttpClient
-import com.squareup.okhttp.mockwebserver.MockResponse
 import com.squareup.okhttp.mockwebserver.MockWebServer
 import me.srodrigo.kotlinwars.model.people.ApiPerson
 import org.hamcrest.CoreMatchers.`is`
@@ -15,47 +14,46 @@ import java.net.HttpURLConnection
 @LargeTest
 class ApiIntegrationTest : AndroidTestCase() {
 
+	companion object {
+		val getPeopleResponseFilePath = "people/get-people-response.json"
+	}
+
 	fun testSendValidGetPeopleRequest() {
 		// This variable is local to avoid concurrency problems if we make it instance variable
-		val server = MockWebServer()
+		val server = TestApiServer()
 		server.start()
-		enqueueGetPeopleResponse(server);
-		val swapiService: SwapiService = createSwapiService(server.url("/").toString())
+		enqueueGetPeopleResponse(server)
+
+		val swapiService: SwapiService = createSwapiService(server.url())
 
 		swapiService.getPeople()
 
-		assertValidGetPeopleRequest(server)
+		server.assertRequest(path = "/people", method = "GET")
 
 		server.shutdown()
-	}
-
-	private fun assertValidGetPeopleRequest(server: MockWebServer) {
-		val recordedRequest = server.takeRequest()
-		assertThat(recordedRequest.path, `is`("/people"))
-		assertThat(recordedRequest.method, `is`("GET"))
 	}
 
 	fun testParseValidGetPeopleResponse() {
-		val server = MockWebServer()
+		val server = TestApiServer()
 		server.start()
-		enqueueGetPeopleResponse(server);
-		val swapiService: SwapiService = createSwapiService(server.url("/").toString())
+		enqueueGetPeopleResponse(server)
+
+		val swapiService: SwapiService = createSwapiService(server.url())
 
 		val peopleResponse = swapiService.getPeople()
 
-		assertPeopleValidResponse(peopleResponse)
+		assertValidGetPeopleResponse(peopleResponse)
 
 		server.shutdown()
 	}
 
-	private fun enqueueGetPeopleResponse(server: MockWebServer) {
-		val mockResponse = MockResponse()
-		mockResponse.setResponseCode(HttpURLConnection.HTTP_OK)
-		mockResponse.setBody(JsonFile(context.assets, "people/get-people-response.json").readContent())
-		server.enqueue(mockResponse)
+	private fun enqueueGetPeopleResponse(server: TestApiServer) {
+		server.enqueueResponse(
+				responseCode = HttpURLConnection.HTTP_OK,
+				body = JsonFile(context.assets, getPeopleResponseFilePath).readContent())
 	}
 
-	private fun assertPeopleValidResponse(peopleResponse: ApiPaginatedResponse<ApiPerson>) {
+	private fun assertValidGetPeopleResponse(peopleResponse: ApiPaginatedResponse<ApiPerson>) {
 		assertThat(peopleResponse.count, `is`(2))
 		assertNull(peopleResponse.previous)
 		assertNull(peopleResponse.next)

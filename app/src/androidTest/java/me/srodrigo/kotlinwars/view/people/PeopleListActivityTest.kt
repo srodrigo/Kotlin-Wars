@@ -8,11 +8,10 @@ import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.v7.widget.RecyclerView
 import android.test.suitebuilder.annotation.LargeTest
-import com.squareup.okhttp.mockwebserver.MockResponse
-import com.squareup.okhttp.mockwebserver.MockWebServer
 import me.srodrigo.kotlinwars.ApiServiceLocatorImp
 import me.srodrigo.kotlinwars.R
 import me.srodrigo.kotlinwars.infrastructure.JsonFile
+import me.srodrigo.kotlinwars.infrastructure.TestApiServer
 import me.srodrigo.kotlinwars.view.CustomActivityTestRule
 import me.srodrigo.kotlinwars.view.waitForHiddenView
 import org.junit.Rule
@@ -23,14 +22,17 @@ import java.net.HttpURLConnection
 @LargeTest
 class PeopleListActivityTest {
 
+	companion object {
+		val getPeopleResponseFilePath = "people/get-people-response.json"
+	}
+
 	@get:Rule val activityRule = CustomActivityTestRule(PeopleListActivity::class.java, true, false)
 
 	@Test fun onRefresh_whenNetworkIsAvailable_shouldShowList() {
-		val server = MockWebServer()
+		val server = TestApiServer()
 		server.start()
-		val url = server.url("/").toString()
-		enqueueGetPeopleResponse(server);
-		activityRule.launchActivity(ApiServiceLocatorImp(url))
+		enqueueGetPeopleResponse(server)
+		activityRule.launchActivity(ApiServiceLocatorImp(server.url()))
 
 		activityRule.waitForHiddenView(R.id.peopleListView)
 
@@ -42,12 +44,11 @@ class PeopleListActivityTest {
 		server.shutdown()
 	}
 
-	private fun enqueueGetPeopleResponse(server: MockWebServer) {
+	private fun enqueueGetPeopleResponse(server: TestApiServer) {
 		val assets = InstrumentationRegistry.getInstrumentation().context.assets
-		val mockResponse = MockResponse()
-		mockResponse.setResponseCode(HttpURLConnection.HTTP_OK)
-		mockResponse.setBody(JsonFile(assets, "people/get-people-response.json").readContent())
-		server.enqueue(mockResponse)
+		server.enqueueResponse(
+				responseCode = HttpURLConnection.HTTP_OK,
+				body = JsonFile(assets, getPeopleResponseFilePath).readContent())
 	}
 
 }
