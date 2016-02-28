@@ -11,11 +11,10 @@ import kotlinx.android.synthetic.main.activity_people_list.*
 import me.srodrigo.kotlinwars.R
 import me.srodrigo.kotlinwars.infrastructure.view.DividerItemDecoration
 import me.srodrigo.kotlinwars.infrastructure.view.ViewStateHandler
-import me.srodrigo.kotlinwars.model.people.Person
-import me.srodrigo.kotlinwars.people.PeopleListPresenter
-import me.srodrigo.kotlinwars.people.PeopleListView
 import me.srodrigo.kotlinwars.infrastructure.view.app
 import me.srodrigo.kotlinwars.infrastructure.view.showMessage
+import me.srodrigo.kotlinwars.people.PeopleListPresenter
+import me.srodrigo.kotlinwars.people.PeopleListView
 import kotlin.properties.Delegates
 
 class PeopleListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener, PeopleListView {

@@ -3,8 +3,8 @@ package me.srodrigo.kotlinwars.people
 import me.srodrigo.kotlinwars.TestCommandExecutor
 import me.srodrigo.kotlinwars.actions.people.GetPeopleCommand
 import me.srodrigo.kotlinwars.infrastructure.ApiNetworkUnavailableException
-import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.infrastructure.CommandExecutor
+import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.model.people.Person
 import org.junit.Before
 import org.junit.Test

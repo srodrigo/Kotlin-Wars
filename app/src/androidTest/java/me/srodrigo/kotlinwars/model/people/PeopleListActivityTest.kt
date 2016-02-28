@@ -1,6 +1,5 @@
 package me.srodrigo.kotlinwars.model.people
 
-import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.contrib.RecyclerViewActions
@@ -11,8 +10,8 @@ import android.test.suitebuilder.annotation.LargeTest
 import me.srodrigo.kotlinwars.ApiServiceLocatorImp
 import me.srodrigo.kotlinwars.R
 import me.srodrigo.kotlinwars.infrastructure.files.JsonFile
-import me.srodrigo.kotlinwars.testutils.TestApiServer
 import me.srodrigo.kotlinwars.testutils.CustomActivityTestRule
+import me.srodrigo.kotlinwars.testutils.TestApiServer
 import me.srodrigo.kotlinwars.testutils.getInstrumentationAssets
 import me.srodrigo.kotlinwars.testutils.waitForHiddenView
 import org.junit.Rule
