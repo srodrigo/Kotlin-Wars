@@ -35,10 +35,13 @@ dependencies {
 	compile parent.ext.appcompatV7
 	compile parent.ext.design
 	compile parent.ext.recyclerview
-	compile project(':presentation')
-	compile project(':external')
+	compile parent.ext.retrofit
+	compile parent.ext.okhttp
 
-	testCompile junit
+	compile project(':presentation')
+
+	testCompile parent.ext.junit
+	testCompile parent.ext.mockito
 
 	androidTestCompile parent.ext.supportAnnotations
 	androidTestCompile parent.ext.testRunner
@@ -49,6 +52,8 @@ dependencies {
 		exclude group: 'com.android.support', module: 'support-v4'
 		exclude module: 'recyclerview-v7'
 	}
+	androidTestCompile parent.ext.junit
+	androidTestCompile parent.ext.mockito
 	androidTestCompile parent.ext.mockWebServer
 }
 

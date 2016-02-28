@@ -13,6 +13,10 @@ import org.junit.Assert
  */
 class TestApiServer {
 
+	companion object {
+		val getPeopleResponseFilePath = "people/get-people-response.json"
+	}
+
 	val server = MockWebServer()
 
 	fun start() {

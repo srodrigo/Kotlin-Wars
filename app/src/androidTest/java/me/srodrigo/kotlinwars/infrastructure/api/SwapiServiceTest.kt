@@ -1,5 +1,6 @@
 package me.srodrigo.kotlinwars.infrastructure.api
 
+import android.support.test.InstrumentationRegistry
 import android.test.AndroidTestCase
 import android.test.suitebuilder.annotation.LargeTest
 import com.squareup.okhttp.OkHttpClient
@@ -11,6 +12,7 @@ import me.srodrigo.kotlinwars.infrastructure.api.SwapiService
 import me.srodrigo.kotlinwars.infrastructure.files.JsonFile
 import me.srodrigo.kotlinwars.model.people.ApiPerson
 import me.srodrigo.kotlinwars.testutils.TestApiServer
+import me.srodrigo.kotlinwars.testutils.getInstrumentationAssets
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import retrofit.RestAdapter
@@ -19,10 +21,6 @@ import java.net.HttpURLConnection
 
 @LargeTest
 class SwapiServiceTest : AndroidTestCase() {
-
-	companion object {
-		val getPeopleResponseFilePath = "people/get-people-response.json"
-	}
 
 	fun testSendValidGetPeopleRequest() {
 		// This variable is local to avoid concurrency problems if we make it instance variable
@@ -54,9 +52,10 @@ class SwapiServiceTest : AndroidTestCase() {
 	}
 
 	private fun enqueueGetPeopleResponse(server: TestApiServer) {
+		val assets = getInstrumentationAssets()
 		server.enqueueResponse(
 				responseCode = HttpURLConnection.HTTP_OK,
-				body = JsonFile(context.assets, getPeopleResponseFilePath).readContent())
+				body = JsonFile(assets, TestApiServer.getPeopleResponseFilePath).readContent())
 	}
 
 	private fun assertValidGetPeopleResponse(peopleResponse: ApiPaginatedResponse<ApiPerson>) {

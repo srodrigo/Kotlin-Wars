@@ -13,6 +13,7 @@ import me.srodrigo.kotlinwars.R
 import me.srodrigo.kotlinwars.infrastructure.files.JsonFile
 import me.srodrigo.kotlinwars.testutils.TestApiServer
 import me.srodrigo.kotlinwars.testutils.CustomActivityTestRule
+import me.srodrigo.kotlinwars.testutils.getInstrumentationAssets
 import me.srodrigo.kotlinwars.testutils.waitForHiddenView
 import org.junit.Rule
 import org.junit.Test
@@ -21,10 +22,6 @@ import java.net.HttpURLConnection
 
 @LargeTest
 class PeopleListActivityTest {
-
-	companion object {
-		val getPeopleResponseFilePath = "people/get-people-response.json"
-	}
 
 	@get:Rule val activityRule = CustomActivityTestRule(PeopleListActivity::class.java, true, false)
 
@@ -45,10 +42,10 @@ class PeopleListActivityTest {
 	}
 
 	private fun enqueueGetPeopleResponse(server: TestApiServer) {
-		val assets = InstrumentationRegistry.getInstrumentation().context.assets
+		val assets = getInstrumentationAssets()
 		server.enqueueResponse(
 				responseCode = HttpURLConnection.HTTP_OK,
-				body = JsonFile(assets, getPeopleResponseFilePath).readContent())
+				body = JsonFile(assets, TestApiServer.getPeopleResponseFilePath).readContent())
 	}
 
 }

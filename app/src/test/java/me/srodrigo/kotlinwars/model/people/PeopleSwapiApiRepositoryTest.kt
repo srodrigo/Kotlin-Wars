@@ -1,8 +1,8 @@
 package me.srodrigo.kotlinwars.model.people
 
 import me.srodrigo.kotlinwars.infrastructure.ApiException
-import me.srodrigo.kotlinwars.infrastructure.ApiPaginatedResponse
-import me.srodrigo.kotlinwars.infrastructure.SwapiService
+import me.srodrigo.kotlinwars.infrastructure.api.ApiPaginatedResponse
+import me.srodrigo.kotlinwars.infrastructure.api.SwapiService
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Before
