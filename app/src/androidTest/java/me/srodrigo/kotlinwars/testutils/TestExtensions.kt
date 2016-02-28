@@ -1,4 +1,4 @@
-package me.srodrigo.kotlinwars.view
+package me.srodrigo.kotlinwars.testutils
 
 import android.support.test.rule.ActivityTestRule
 import android.view.View

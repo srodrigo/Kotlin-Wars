@@ -1,4 +1,4 @@
-package me.srodrigo.kotlinwars.view
+package me.srodrigo.kotlinwars.testutils
 
 import android.app.Activity
 import android.content.Intent

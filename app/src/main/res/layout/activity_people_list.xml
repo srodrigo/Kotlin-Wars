@@ -4,7 +4,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	tools:context=".view.people.PeopleListActivity"
+	tools:context=".model.people.PeopleListActivity"
 	>
 
 	<include
@@ -16,7 +16,7 @@
 		android:id="@+id/peopleSwipeLayout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:context=".view.people.PeopleListActivity"
+		tools:context=".model.people.PeopleListActivity"
 		>
 
 		<FrameLayout

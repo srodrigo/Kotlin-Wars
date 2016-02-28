@@ -1,4 +1,4 @@
-package me.srodrigo.kotlinwars.view.people;
+package me.srodrigo.kotlinwars.infrastructure.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

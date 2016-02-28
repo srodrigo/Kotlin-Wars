@@ -1,8 +1,8 @@
 package me.srodrigo.kotlinwars
 
 import com.squareup.okhttp.OkHttpClient
-import me.srodrigo.kotlinwars.infrastructure.SwapiErrorHandler
-import me.srodrigo.kotlinwars.infrastructure.SwapiService
+import me.srodrigo.kotlinwars.infrastructure.api.SwapiErrorHandler
+import me.srodrigo.kotlinwars.infrastructure.api.SwapiService
 import me.srodrigo.kotlinwars.model.people.PeopleApiRepository
 import me.srodrigo.kotlinwars.model.people.PeopleSwapiApiRepository
 import retrofit.RestAdapter

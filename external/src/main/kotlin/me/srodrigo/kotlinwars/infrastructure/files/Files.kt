@@ -1,4 +1,4 @@
-package me.srodrigo.kotlinwars.infrastructure;
+package me.srodrigo.kotlinwars.infrastructure.files;
 
 import android.content.res.AssetManager
 import java.io.BufferedReader

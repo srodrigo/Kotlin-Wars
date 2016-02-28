@@ -1,4 +1,4 @@
-package me.srodrigo.kotlinwars.infrastructure
+package me.srodrigo.kotlinwars.testutils
 
 import com.squareup.okhttp.mockwebserver.MockResponse
 import com.squareup.okhttp.mockwebserver.MockWebServer

@@ -1,4 +1,4 @@
-package me.srodrigo.kotlinwars.infrastructure
+package me.srodrigo.kotlinwars.infrastructure.api
 
 import me.srodrigo.kotlinwars.model.people.ApiPerson
 import retrofit.http.GET

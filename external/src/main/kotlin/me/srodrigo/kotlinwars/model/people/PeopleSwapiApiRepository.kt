@@ -1,6 +1,6 @@
 package me.srodrigo.kotlinwars.model.people
 
-import me.srodrigo.kotlinwars.infrastructure.SwapiService
+import me.srodrigo.kotlinwars.infrastructure.api.SwapiService
 import java.util.*
 
 class PeopleSwapiApiRepository(private val swapiService: SwapiService) : PeopleApiRepository {

@@ -1,10 +1,16 @@
-package me.srodrigo.kotlinwars.infrastructure
+package me.srodrigo.kotlinwars.infrastructure.api
 
 import android.test.AndroidTestCase
 import android.test.suitebuilder.annotation.LargeTest
 import com.squareup.okhttp.OkHttpClient
 import com.squareup.okhttp.mockwebserver.MockWebServer
+import me.srodrigo.kotlinwars.infrastructure.ApiException
+import me.srodrigo.kotlinwars.infrastructure.api.ApiPaginatedResponse
+import me.srodrigo.kotlinwars.infrastructure.api.SwapiErrorHandler
+import me.srodrigo.kotlinwars.infrastructure.api.SwapiService
+import me.srodrigo.kotlinwars.infrastructure.files.JsonFile
 import me.srodrigo.kotlinwars.model.people.ApiPerson
+import me.srodrigo.kotlinwars.testutils.TestApiServer
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import retrofit.RestAdapter
@@ -12,7 +18,7 @@ import retrofit.client.OkClient
 import java.net.HttpURLConnection
 
 @LargeTest
-class ApiIntegrationTest : AndroidTestCase() {
+class SwapiServiceTest : AndroidTestCase() {
 
 	companion object {
 		val getPeopleResponseFilePath = "people/get-people-response.json"

@@ -1,6 +1,8 @@
-package me.srodrigo.kotlinwars.infrastructure
+package me.srodrigo.kotlinwars.infrastructure.api
 
 import android.util.Log
+import me.srodrigo.kotlinwars.infrastructure.ApiException
+import me.srodrigo.kotlinwars.infrastructure.ApiNetworkUnavailableException
 import retrofit.ErrorHandler
 import retrofit.RetrofitError
 

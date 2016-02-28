@@ -1,4 +1,4 @@
-package me.srodrigo.kotlinwars.infrastructure
+package me.srodrigo.kotlinwars.infrastructure.api
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

@@ -1,4 +1,4 @@
-package me.srodrigo.kotlinwars.view
+package me.srodrigo.kotlinwars.infrastructure.view
 
 import android.app.Activity
 import android.widget.Toast

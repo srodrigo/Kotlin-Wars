@@ -1,4 +1,4 @@
-package me.srodrigo.kotlinwars.infrastructure
+package me.srodrigo.kotlinwars.infrastructure.view
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
