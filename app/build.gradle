@@ -1,16 +1,19 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-	compileSdkVersion 23
-	buildToolsVersion "23.0.1"
+	compileSdkVersion parent.ext.androidCompileSdkVersion
+	buildToolsVersion parent.ext.androidBuildToolsVersion
 
 	defaultConfig {
-		applicationId "me.srodrigo.kotlinwars"
-		minSdkVersion 14
-		targetSdkVersion 23
-		versionCode 1
-		versionName "1.0"
+		applicationId parent.ext.androidApplicationId
+		minSdkVersion parent.ext.androidMinSdkVersion
+		targetSdkVersion parent.ext.androidTargetSdkVersion
+		versionCode parent.ext.androidVersionCode
+		versionName parent.ext.androidVersionName
+
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 	buildTypes {
 		release {
@@ -26,15 +29,32 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	testCompile "junit:junit:$junit_version"
-	compile "com.android.support:appcompat-v7:$support_version"
-	compile "com.android.support:design:$support_version"
-	compile "com.android.support:recyclerview-v7:$support_version"
-	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-	compile "org.jetbrains.anko:anko-sdk15:$anko_version"
-	compile "org.jetbrains.anko:anko-support-v4:$anko_version"
-	project(':presentation')
-	project(':external')
+	compile parent.ext.kotlinStdlib
+	compile parent.ext.anko
+	compile parent.ext.ankoSupport
+	compile parent.ext.appcompatV7
+	compile parent.ext.design
+	compile parent.ext.recyclerview
+	compile parent.ext.retrofit
+	compile parent.ext.okhttp
+
+	compile project(':presentation')
+
+	testCompile parent.ext.junit
+	testCompile parent.ext.mockito
+
+	androidTestCompile parent.ext.supportAnnotations
+	androidTestCompile parent.ext.testRunner
+	androidTestCompile parent.ext.testRules
+	androidTestCompile parent.ext.espressoCore
+	androidTestCompile (parent.ext.espressoContrib) {
+		exclude group: 'com.android.support', module: 'appcompat'
+		exclude group: 'com.android.support', module: 'support-v4'
+		exclude module: 'recyclerview-v7'
+	}
+	androidTestCompile parent.ext.junit
+	androidTestCompile parent.ext.mockito
+	androidTestCompile parent.ext.mockWebServer
 }
 
 buildscript {

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".model.people.PeopleListActivity"
+	>
+
+	<include
+		android:id="@+id/toolbar"
+		layout="@layout/toolbar"
+		/>
+
+	<android.support.v4.widget.SwipeRefreshLayout
+		android:id="@+id/peopleSwipeLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		tools:context=".model.people.PeopleListActivity"
+		>
+
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			>
+
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/peopleListView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				tools:listitem="@layout/item_people"
+				android:visibility="gone"
+				tools:visibility="visible"
+				/>
+
+			<TextView
+				android:id="@+id/peopleEmptyView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:text="@string/people_empty_view"
+				android:gravity="center"
+				android:visibility="gone"
+				/>
+
+			<TextView
+				android:id="@+id/peopleLoadingView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:text="@string/loading_view"
+				android:gravity="center"
+				android:visibility="gone"
+				/>
+
+		</FrameLayout>
+
+	</android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

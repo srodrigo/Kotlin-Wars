@@ -1,5 +1,8 @@
-apply plugin: 'java'
+apply plugin: 'kotlin'
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile parent.ext.kotlinStdlib
+	testCompile parent.ext.junit
+	testCompile parent.ext.mockito
 }
