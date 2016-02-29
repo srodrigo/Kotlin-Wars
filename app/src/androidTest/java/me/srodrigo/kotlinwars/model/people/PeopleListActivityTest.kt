@@ -13,7 +13,6 @@ import me.srodrigo.kotlinwars.infrastructure.files.JsonFile
 import me.srodrigo.kotlinwars.testutils.CustomActivityTestRule
 import me.srodrigo.kotlinwars.testutils.TestApiServer
 import me.srodrigo.kotlinwars.testutils.getInstrumentationAssets
-import me.srodrigo.kotlinwars.testutils.waitForHiddenView
 import org.junit.Rule
 import org.junit.Test
 import java.net.HttpURLConnection
@@ -29,8 +28,6 @@ class PeopleListActivityTest {
 		server.start()
 		enqueueGetPeopleResponse(server)
 		activityRule.launchActivity(ApiServiceLocatorImp(server.url()))
-
-		activityRule.waitForHiddenView(R.id.peopleListView)
 
 		val peopleListMatcher = withId(R.id.peopleListView)
 		onView(peopleListMatcher).check { view, noMatchingViewException -> isDisplayed() }
