@@ -92,7 +92,6 @@ class SwapiServiceTest : AndroidTestCase() {
 				.setClient(OkClient(OkHttpClient()))
 				.setErrorHandler(SwapiErrorHandler())
 				.build();
-		val swapiService: SwapiService = restAdapter.create(SwapiService::class.java)
-		return swapiService
+		return restAdapter.create(SwapiService::class.java)
 	}
 }
