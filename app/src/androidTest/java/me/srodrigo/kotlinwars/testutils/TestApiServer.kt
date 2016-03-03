@@ -5,12 +5,6 @@ import com.squareup.okhttp.mockwebserver.MockWebServer
 import org.hamcrest.CoreMatchers
 import org.junit.Assert
 
-/**
- * This class should be reused in the app module.
- * The same thing happens when trying to reuse test assets for both integration
- * and acceptance tests.
- * Both modules should be merged into one, and then move this file into the correct folder.
- */
 class TestApiServer {
 
 	companion object {
