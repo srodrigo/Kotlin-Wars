@@ -7,9 +7,9 @@ import me.srodrigo.kotlinwars.KotlinWarsApp
 fun Activity.app() = application as KotlinWarsApp
 
 fun Activity.showMessage(messageResId: Int) {
-	Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
+	Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
 }
 
 fun Activity.showMessage(message: String) {
-	Toast.makeText(this, message, Toast.LENGTH_SHORT)
+	Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
